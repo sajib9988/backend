@@ -1,6 +1,8 @@
 from django.urls import path
-from . import views
+from .views import list_favorites, add_favorite, remove_favorite
 
 urlpatterns = [
-    # Example: path('', views.home, name='home'),
+    path('', list_favorites, name='list_favorites'),
+    path('add/', add_favorite, name='add_favorite'),
+    path('remove/', remove_favorite, name='remove_favorite'),
 ]
