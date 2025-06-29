@@ -5,4 +5,4 @@ class FavoriteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Favorite
         fields = '__all__'
-        read_only_fields = ['user', 'property']
+        read_only_fields = ['user']

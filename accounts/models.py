@@ -22,10 +22,10 @@ class CustomUserManager(BaseUserManager):
 
 class CustomUser(AbstractBaseUser, PermissionsMixin):
     ROLE_CHOICES = [
-        ('admin', 'Admin'),
-        ('agent', 'Agent'),
-        ('seller', 'Seller'),
-        ('buyer', 'Buyer'),
+        ('superadmin', 'SuperAdmin'),
+    ('admin', 'Admin'),
+    ('seller', 'Seller'),
+    ('buyer', 'Buyer'),
     ]
     email = models.EmailField(unique=True)
     first_name = models.CharField(max_length=30, blank=True)

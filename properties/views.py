@@ -7,13 +7,20 @@ from .models import Property, PropertyImage
 from .serializers import PropertySerializer
 from cloudinary.uploader import upload as cloudinary_upload
 from django.conf import settings
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.filters import SearchFilter
+from rest_framework.generics import ListCreateAPIView
+from rest_framework import generics
 import json
 
-class PropertyListCreateView(APIView):
-    def get(self, request):
-        properties = Property.objects.all()
-        serializer = PropertySerializer(properties, many=True)
-        return Response(serializer.data)
+
+class PropertyListCreateView(ListCreateAPIView):
+    queryset = Property.objects.all()
+    serializer_class = PropertySerializer
+    filter_backends = [DjangoFilterBackend, SearchFilter]
+    filterset_fields = ['location', 'bedrooms', 'bathrooms', 'property_type', 'is_published']
+    search_fields = ['title', 'description', 'location']
+
 
     def post(self, request):
         self.permission_classes = [IsAuthenticated]  # Only POST requires auth

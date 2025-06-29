@@ -1,6 +1,7 @@
 from django.urls import path
-from . import views
+from .views import InquiryCreateView, InquiryListView
 
 urlpatterns = [
-    # Example: path('', views.home, name='home'),
+    path('create/', InquiryCreateView.as_view(), name='inquiry-create'),
+    path('', InquiryListView.as_view(), name='inquiry-list'),
 ]
